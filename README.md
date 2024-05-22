@@ -69,7 +69,7 @@ BOB_WALLET=$(simd keys show bob-wallet -a)
 ```
 ![](./src/bob-key.png)
 ##
-Send 'money' from Alice to Bob
+Send 'money' from Alice to Bob. Also there are unsigned transactions. They are excuted with `--generate-only` flag and sign later with `simd tx sign` command.
 ```
 simd tx bank send $ALICE_WALLET $BOB_WALLET 1000000stake --chain-id my-test-chain
 ```
@@ -88,17 +88,15 @@ simd query staking delegations-to $(simd keys show alice-wallet --bech val -a --
 ```
 ![](./src/delegate-2.png)
 ## Inflation tasks. Change the inflation mechanism  
-Constant inflation
-![](./src/const-infl.png)
-![](./src/const-infl-inside.png)  
+### Constant inflation
 Changed parameters: `inflation`, `inflation_rate_change`.  
 New value of `inflation` is custom, `inflation_rate_change` was set to 0.
-
-Task **3.b.** is not clear for me. I decided to make inflation depends on 'participants'.
+![](./src/const-infl-inside.png)  
+![](./src/const-infl.png)  
+### Changing depending on the arbitrary parameters you(me) like
+Task **3.b.** is not clear for me. I decided to make inflation depends on 'participants'. Here you can see that inflation changing is not constant. It's clearly visible on last two blocks. The more users there are, the greater the inflation.  
 ![](./src/participants.png)  
-  
 ![source code](./src/source-code.png)
-Here you can see that inflation changing is not constant. It's clearly visible on last two blocks. 
 ## Codebase 
 
 **x/mint/types/minter.go**  
