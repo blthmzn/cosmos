@@ -86,15 +86,19 @@ Query the total delegations to `validator`.
 ```
 simd query staking delegations-to $(simd keys show alice-wallet --bech val -a --keyring-backend test)
 ```
-![](./src/delegate-2.png)
-## Inflation tasks. Change the inflation mechanism  
+![](./src/delegate-2.png)  
+## How inflation depends on transactions
+![](./src/infl-after-tx.png)
+![](./src/infl-after-10-second.png)  
+
+## Inflation tasks. Change the inflation mechanism 
+Mechanic of the inflation growth described in `NextInflationRate` method.
 ### Constant inflation
-Changed parameters: `inflation`, `inflation_rate_change`.  
-New value of `inflation` is custom, `inflation_rate_change` was set to 0.
+To make inflation constant you can modify `genesis.json` file. Changed parameters: `inflation`, `inflation_rate_change`. New value of `inflation` is custom, `inflation_rate_change` was set to 0.  
 ![](./src/const-infl-inside.png)  
 ![](./src/const-infl.png)  
 ### Changing depending on the arbitrary parameters you(me) like
-Task **3.b.** is not clear for me. I decided to make inflation depends on 'participants'. Here you can see that inflation changing is not constant. It's clearly visible on last two blocks. The more users there are, the greater the inflation.  
+Task **3.b.** is not clear for me. I decided to make inflation depends on 'participants'. The more users there are, the greater the inflation. Here you can see that inflation changing is not constant. It's clearly visible on last two blocks.  
 ![](./src/participants.png)  
 ![source code](./src/source-code.png)
 ## Codebase 
